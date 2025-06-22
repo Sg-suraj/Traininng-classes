@@ -1,0 +1,26 @@
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+
+        int prefixsum = 0;
+        int count = 0;
+         //intialaing the HashMap
+        HashMap<Integer, Integer> input =  new HashMap<Integer , Integer>();
+        input.put(0,1); 
+
+        for(int i = 0; i < nums.length; i++){
+            prefixsum = prefixsum + nums[i];
+
+            
+            //cheking using the loop
+            if(input.containsKey(prefixsum - k)){
+                count += input.get(prefixsum - k);
+            }
+            input.put(prefixsum, input.getOrDefault(prefixsum, 0) + 1); 
+            
+
+
+        }
+        return count;
+         
+    }
+}
