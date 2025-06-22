@@ -1,0 +1,33 @@
+import java.util.HashMap;
+class Solution {
+    public int subarraysDivByK(int[] nums, int k) {
+        int prefixsum = 0;
+        int count = 0;
+        int count1 = 0;
+
+        //intialiazing the  Hashmap
+        HashMap<Integer , Integer > input  = new  HashMap<>();
+        input.put(0,1);
+
+        //prefix sum using thte for loop
+        for(int i = 0; i <nums.length; i++){
+            prefixsum += nums[i];
+
+            //initializing mod
+            int mod  = prefixsum % k;
+            if(mod < 0){
+                mod  = mod + k;
+            }
+
+            //returning count
+            if(input.containsKey(mod)){
+                count = count +  input.get(mod);
+                
+                
+            }
+            input.put(mod, input.getOrDefault(mod, 0) + 1);
+        }
+        
+        return count;
+    }
+}
